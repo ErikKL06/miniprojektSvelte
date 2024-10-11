@@ -1,21 +1,33 @@
-<section id = 'keyBoard'>
-    <button id='b7' on:click>7</button>
-    <button id='b8' on:click>8</button>
-    <button id='b9' on:click>9</button>
-    <button id='add' on:click>+</button>
-    <button id='b4' on:click>4</button>
-    <button id='b5' on:click>5</button>
-    <button id='b6' on:click>6</button>
-    <button id='sub' on:click>-</button>
-    <button id='b1' on:click>1</button>
-    <button id='b2' on:click>2</button>
-    <button id='b3' on:click>3</button>
-    <button id='mul' on:click>x</button>
-    
-    <button id='comma' on:click>,</button>
-    <button id='b0' on:click>0</button>
-    <button id='enter' on:click>=</button>
-    <button id='div' on:click>/</button>
-    <button id='clear' style = 'grid-column: span 4;' on:click>CLEAR</button>
-</section>
+
+<button value="+"  on:click>+</button>
+<button value="-"  on:click>-</button>
+<button value="x"  on:click>x</button>
+<button value="." on:click>.</button>
+
+
+<button value ="7" on:click>7</button>
+<button value ="8" on:click>8</button>
+<button value ="9" on:click>9</button>
+
+
+<button value ="4" on:click>4</button>
+<button value ="5" on:click>5</button>
+<button value ="6" on:click>6</button>
+
+
+<button value ="1" on:click>1</button>
+<button value ="2" on:click>2</button>
+<button value ="3" on:click>3</button>
+
+
+<button value ="ac" on:click>AC</button>
+<button value ="0" on:click>0</button>
+<button value ="c" on:click>⇦</button>
+
+ 
+
+<button value="comma" on:click>,</button>
+<button value="enter" on:click>=</button>
+<button value="div" on:click>/</button>
+<button value="clear" style = 'grid-column: span 4;' on:click>CLEAR</button>
 
