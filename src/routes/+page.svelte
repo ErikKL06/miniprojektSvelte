@@ -38,7 +38,7 @@
             calculate();
             check = false;
             }
-            memory = lcd.value;
+            memory = display;
             isCalculated = false;
 
         }else if(val === "enter"){
