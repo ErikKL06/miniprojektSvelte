@@ -9,7 +9,8 @@
     let isCalculated = false;
     let memory = 0; // Lagrat/gamlat värdet från display
     let arithmetic = null; // Vilken beräkning som skall göras +,-, x eller /
-    let display = "";
+    let display = " ";
+    
     function updateDisplay(e){
         let val = e.target.value; // Knappens value-värde
         if(val === "ac"){
@@ -19,7 +20,7 @@
             display = display.slice(0, -1);
 
         }else if(Number(val) >= 0 && Number(val) <10 ){
-            display += val;
+
             if (isCalculated === true) {
                 memClear();
             }
@@ -27,6 +28,7 @@
                 clearLCD();
                 check = true;
             }
+            display += val;
             isComma = false;
             isCalculated = false;
 
@@ -45,69 +47,55 @@
 
         }else if(val === "."){
             display += val;
-            isCalculated = false; 
+            isCalculated = false;
+            isComma = true;
         }
     }
 
     function setOperator(operator){
-        if (operator === "add") {
-            arithmetic = '+';
-            document.getElementById("add").style.backgroundColor = 'lightblue';
-        }
-        else if(operator === "sub") {
-            arithmetic = '-';
-            document.getElementById("sub").style.backgroundColor = 'lghtblue';
-        }
-        else if(operator === "div") {
-            arithmetic = '/';
-            document.getElementById("div").style.backgroundColor = 'lightblue';
-        }
-        else {
-            arithmetic = 'x';
-            document.getElementById("mul").style.backgroundColor = 'lightblue';
-        }
-
+        arithmetic = operator;
     }
 
     function calculate(){
-        display = eval(display);
+
         if (arithmetic === "+") {
-        if (lastOperand === null) {
-                lastOperand = parseFloat(lcd.value);
-            }
-            lcd.value = parseFloat(memory) + lastOperand;
-            memory = lcd.value;
+            if (lastOperand === null) {
+                    lastOperand = parseFloat(display);
+                }
+            display = parseFloat(memory) + lastOperand;
+            memory = display;
             lastOperation = '+';
         }
         else if (arithmetic === "-") {
             if (lastOperand === null) {
-                lastOperand = parseFloat(lcd.value);
+                lastOperand = parseFloat(display);
             }
-            lcd.value = parseFloat(memory) - lastOperand;
-            memory = lcd.value;
+            display = parseFloat(memory) - lastOperand;
+            memory = display;
             lastOperation = '-';
         }
         else if (arithmetic === "/") {
             if (lastOperand === null) {
-                lastOperand = parseFloat(lcd.value);
+                lastOperand = parseFloat(display);
             }
-            lcd.value = parseFloat(memory) / lastOperand;
-            memory = lcd.value;
+            display = parseFloat(memory) / lastOperand;
+            memory = display;
             lastOperation = '/';
         }
         else {
             if (lastOperand === null) {
-                lastOperand = parseFloat(lcd.value);
+                lastOperand = parseFloat(display);
             }
-            lcd.value = parseFloat(memory) * lastOperand;
-            memory = lcd.value;
-            lastOperation = 'x';
+            display = parseFloat(memory) * lastOperand;
+            memory = display;
+            lastOperation = '*';
         }
         arithmetic = lastOperation;
 
         isCalculated = true;
 
     }
+    
 
     /** Rensar display */
     function clearLCD() {
@@ -116,7 +104,7 @@
         lastOperand = null;
         lastOperation = null;
         console.log("clear");
-        if(lcd.value === '') {
+        if(display === '') {
             document.getElementById("clear").innerHTML = "MEMCLEAR";
         }
 
