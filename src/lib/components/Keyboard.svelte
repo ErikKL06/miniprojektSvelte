@@ -1,7 +1,8 @@
 
 <button value="+"  on:click>+</button>
 <button value="-"  on:click>-</button>
-<button value="x"  on:click>x</button>
+<button value="*"  on:click>x</button>
+<button value="/" on:click>/</button>
 <button value="." on:click>.</button>
 
 
@@ -23,11 +24,6 @@
 <button value ="ac" on:click>AC</button>
 <button value ="0" on:click>0</button>
 <button value ="c" on:click>⇦</button>
-
- 
-
-<button value="comma" on:click>,</button>
 <button value="enter" on:click>=</button>
-<button value="div" on:click>/</button>
-<button value="clear" style = 'grid-column: span 4;' on:click>CLEAR</button>
+
 
