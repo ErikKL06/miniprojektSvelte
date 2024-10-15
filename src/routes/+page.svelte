@@ -33,12 +33,12 @@
             isCalculated = false;
 
         }else if(val === "+" || val === "-" || val === "*" || val === "/"){
-            display += val;
             if (check === true) {
             calculate();
             check = false;
             }
             memory = display;
+            setOperator (val);
             isCalculated = false;
 
         }else if(val === "enter"){
@@ -60,9 +60,9 @@
 
         if (arithmetic === "+") {
             if (lastOperand === null) {
-                    lastOperand = parseFloat(display);
+                    lastOperand = (display);
                 }
-            display = parseFloat(memory) + lastOperand;
+            display = (memory) + lastOperand;
             memory = display;
             lastOperation = '+';
         }
