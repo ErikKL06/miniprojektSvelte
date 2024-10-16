@@ -9,7 +9,7 @@
     let isCalculated = false;
     let memory = 0; // Lagrat/gamlat värdet från display
     let arithmetic = null; // Vilken beräkning som skall göras +,-, x eller /
-    let display = " ";
+    let display = '';
     
     function updateDisplay(e){
         let val = e.target.value; // Knappens value-värde
@@ -34,101 +34,63 @@
 
         }else if(val === "+" || val === "-" || val === "*" || val === "/"){
             if (check === true) {
-            calculate();
-            check = false;
+                calculate();
+                check = false;
             }
-            memory = display;
-            setOperator (val);
+            memory = parseFloat(display); // Convert display to number
+            setOperator(val);
             isCalculated = false;
-
+            display = "";
         }else if(val === "enter"){
             calculate();
             check = false;
-
         }else if(val === "."){
-            display += val;
-            isCalculated = false;
-            isComma = true;
+            if (!isComma) {
+                display += val;
+                isComma = true;
+            }
         }
     }
 
-    function setOperator(operator){
+    function setOperator(operator) {
         arithmetic = operator;
     }
 
-    function calculate(){
-
+    function calculate() {
+        let currentOperand = parseFloat(display); // Convert display to number
         if (arithmetic === "+") {
-            if (lastOperand === null) {
-                    lastOperand = (display);
-                }
-            display = (memory) + lastOperand;
-            memory = display;
-            lastOperation = '+';
+            display = (memory + currentOperand).toString();
+        } else if (arithmetic === "-") {
+            display = (memory - currentOperand).toString();
+        } else if (arithmetic === "*") {
+            display = (memory * currentOperand).toString();
+        } else if (arithmetic === "/") {
+            display = (memory / currentOperand).toString();
         }
-        else if (arithmetic === "-") {
-            if (lastOperand === null) {
-                lastOperand = parseFloat(display);
-            }
-            display = parseFloat(memory) - lastOperand;
-            memory = display;
-            lastOperation = '-';
-        }
-        else if (arithmetic === "/") {
-            if (lastOperand === null) {
-                lastOperand = parseFloat(display);
-            }
-            display = parseFloat(memory) / lastOperand;
-            memory = display;
-            lastOperation = '/';
-        }
-        else {
-            if (lastOperand === null) {
-                lastOperand = parseFloat(display);
-            }
-            display = parseFloat(memory) * lastOperand;
-            memory = display;
-            lastOperation = '*';
-        }
-        arithmetic = lastOperation;
-
         isCalculated = true;
-
-    }
-    
-
-    /** Rensar display */
-    function clearLCD() {
-        display = '';
         isComma = false;
         lastOperand = null;
-        lastOperation = null;
-        console.log("clear");
-        if(display === '') {
-            document.getElementById("clear").innerHTML = "MEMCLEAR";
-        }
-
+        arithmetic = null;
     }
 
-    function memClear(){
-        check = false;
+    function memClear() {
+        display = "";
         memory = 0;
         arithmetic = null;
-        clearLCD();
-        console.log("memClear");
+        isComma = false;
+        isCalculated = false;
+        lastOperand = null;
+        lastOperation = null;
+        check = false;
     }
 
+    function clearLCD() {
+        display = "";
+    }
 </script>
 
 <fieldset>
     <legend>KeyBoard</legend>
-    <input type="text" value={display} disabled />
-    <Keyboard on:click = {updateDisplay}/>
- </fieldset>
- 
-    
-<Header />
- 
-
-
-
+    <input type="text" bind:value={display} readonly />
+    <Keyboard on:click={updateDisplay} />
+</fieldset>
