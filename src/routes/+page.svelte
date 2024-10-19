@@ -1,6 +1,7 @@
 <script>
     import Header from '$lib/components/Header.svelte';
     import Keyboard from '$lib/components/Keyboard.svelte';
+    import '$lib/global.scss';
 
     let isComma = false;
     let lastOperand = null;
